@@ -1,5 +1,6 @@
 from typing import Dict, List, Any
 
+
 def format_linter_error(error: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "line": error["line_number"],
@@ -10,7 +11,8 @@ def format_linter_error(error: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def format_single_linter_file(file_path: str, errors: List[Dict[str, Any]]) -> Dict[str, Any]:
+def format_single_linter_file(file_path: str, errors: List[Dict[str, Any]])\
+        -> Dict[str, Any]:
     return {
         "errors": [format_linter_error(error) for error in errors],
         "path": file_path,
@@ -18,7 +20,8 @@ def format_single_linter_file(file_path: str, errors: List[Dict[str, Any]]) -> D
     }
 
 
-def format_linter_report(linter_report: Dict[str, List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
+def format_linter_report(linter_report: Dict[str, List[Dict[str, Any]]])\
+        -> List[Dict[str, Any]]:
     return [
         format_single_linter_file(file_path, errors)
         for file_path, errors in linter_report.items()
